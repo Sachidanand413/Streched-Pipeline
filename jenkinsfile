@@ -3,12 +3,6 @@ pipeline {
 	    label "Window-node"
 	}      
 	stages {
-		stage('Git.Checkout') {
-			steps {
-					echo "Connecting the git checkout";
-					git 'https://github.com/Sachidanand413/Streched-Pipeline.git'
-			}
-		}
 		
 		stage('Build.bat') {
 			steps {
