@@ -1,0 +1,46 @@
+pipeline {
+	agent {
+	    label "Window-node"
+	}      
+	stages {
+		stage('Git.Checkout') {
+			steps {
+					echo "Connecting the git checkout";
+					git 'https://github.com/Sachidanand413/Streched-Pipeline.git'
+			}
+		}
+		
+		stage('Build.bat') {
+			steps {
+					echo "Build.bat executed successfully";
+					bat label: '', script: 'Build.bat'
+			}
+		}
+		
+		stage('Deploy.bat') {
+			steps {
+				echo "Deploy.bat executed successfully";
+				bat label: '', script: 'Deploy.bat'
+			}
+		}
+		
+	}
+	post{
+		always {
+			echo 'This will always run'
+		}
+		success {
+			echo 'This will run only if successful'
+		}
+		failure {
+			echo 'This will run only if failed'
+		}
+		unstable {
+			echo 'This will run only of the run was marked as unstable'
+		}
+		changed {
+			echo 'This will run only if the state of the pipeline has changed'
+			echo 'For example, if the pipeline was previously failed but is now successful'
+		}
+	}	
+}	
