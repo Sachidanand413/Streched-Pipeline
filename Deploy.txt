@@ -1,0 +1,1 @@
+echo "Test the deploy editer" %date% : %time%
